@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Молодежный ресурсный центр | Жастар ресурстық орталығы</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepBlue: '#0f172a',
+                        brandBlue: '#1e3a8a',
+                        turquoise: '#06b6d4',
+                        accentOrange: '#f97316',
+                        lightBg: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0e7490 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-lightBg text-slate-800 antialiased selection:bg-turquoise selection:text-white">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo & Title -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brandBlue to-turquoise flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-turquoise/20 group-hover:scale-105 transition-transform">
+                    МРЦ
+                </div>
+                <div>
+                    <span class="block font-bold text-lg text-slate-900 leading-tight">Молодежный ресурсный центр</span>
+                    <span class="block text-xs font-medium text-turquoise tracking-wider uppercase">Жастар ресурстық орталығы</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="#about" class="hover:text-turquoise transition-colors">О нас</a>
+                <a href="#directions" class="hover:text-turquoise transition-colors">Направления</a>
+                <a href="#events" class="hover:text-turquoise transition-colors">Мероприятия</a>
+                <a href="#contacts" class="hover:text-turquoise transition-colors">Контакты</a>
+            </nav>
+
+            <!-- Header Contacts & CTA -->
+            <div class="hidden lg:flex items-center space-x-6">
+                <a href="tel:+77152000000" class="flex items-center space-x-2 text-sm font-semibold text-slate-700 hover:text-accentOrange transition-colors">
+                    <svg class="w-4 h-4 text-turquoise" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    <span>+7 (7152) 00-00-00</span>
+                </a>
+                <button onclick="openModal()" class="bg-accentOrange hover:bg-orange-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-accentOrange/30 hover:shadow-xl transition-all text-sm transform hover:-translate-y-0.5">
+                    Стать волонтером
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors focus:outline-none">
+                <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">О нас</a>
+            <a href="#directions" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Направления</a>
+            <a href="#events" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Мероприятия</a>
+            <a href="#contacts" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Контакты</a>
+            <div class="pt-2 border-t border-slate-100 flex flex-col space-y-3">
+                <a href="tel:+77152000000" class="text-sm font-semibold text-turquoise">+7 (7152) 00-00-00</a>
+                <button onclick="toggleMobileMenu(); openModal();" class="w-full bg-accentOrange text-white font-semibold py-3 rounded-xl shadow-md text-center">
+                    Стать волонтером
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white relative overflow-hidden py-20 lg:py-32">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center space-y-8">
+                <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-turquoise text-sm font-medium">
+                    <span class="w-2 h-2 rounded-full bg-turquoise animate-pulse"></span>
+                    <span>Территория возможностей и энергии</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+                    Твое будущее начинается <span class="text-transparent bg-clip-text bg-gradient-to-r from-turquoise to-orange-400">здесь и сейчас!</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-300 font-normal max-w-2xl mx-auto leading-relaxed">
+                    Молодежный ресурсный центр объединяет активных, амбициозных и целеустремленных. Получай гранты, развивай стартапы, находи единомышленников и меняй мир к лучшему.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <button onclick="openModal()" class="w-full sm:w-auto bg-accentOrange hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-2xl shadow-xl shadow-accentOrange/30 hover:scale-105 transition-all text-base">
+                        Стать волонтером
+                    </button>
+                    <a href="#directions" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-2xl backdrop-blur-md border border-white/10 transition-all text-base text-center">
+                        Узнать направления
+                    </a>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-3 gap-4 pt-12 max-w-2xl mx-auto border-t border-white/10 mt-12 text-left sm:text-center">
+                    <div>
+                        <div class="text-2xl sm:text-4xl font-extrabold text-turquoise">5000+</div>
+                        <div class="text-xs sm:text-sm text-slate-300 mt-1">Активной молодежи</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-4xl font-extrabold text-orange-400">120+</div>
+                        <div class="text-xs sm:text-sm text-slate-300 mt-1">Проведенных форумов</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-4xl font-extrabold text-white">50+</div>
+                        <div class="text-xs sm:text-sm text-slate-300 mt-1">Грантовых проектов</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-block text-turquoise font-bold uppercase tracking-wider text-sm bg-turquoise/10 px-3 py-1 rounded-lg">
+                        О нашем центре
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        Создаем условия для роста каждого молодого человека
+                    </h2>
+                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+                        Молодежный ресурсный центр — это главная площадка поддержки молодежных инициатив, карьерного роста и качественного досуга. Мы помогаем воплощать смелые идеи в реальность, предоставляем бесплатные консультации и открываем двери в мир профессиональных возможностей.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="flex items-start space-x-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-xl bg-turquoise/10 text-turquoise flex items-center justify-center font-bold flex-shrink-0">✓</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Поддержка инициатив</h4>
+                                <p class="text-xs text-slate-500 mt-1">Помощь в реализации проектов и стартапов.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-xl bg-accentOrange/10 text-accentOrange flex items-center justify-center font-bold flex-shrink-0">✓</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Трудоустройство</h4>
+                                <p class="text-xs text-slate-500 mt-1">Вакансии, ярмарки труда и профориентация.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-6 relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-200 aspect-video lg:aspect-4/3">
+                        <img src="https://placehold.co/800x600/1e3a8a/ffffff?text=Молодежь+МРЦ" alt="Молодежный центр" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x600/1e3a8a/ffffff?text=МРЦ+Казахстан'">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-deepBlue text-white p-6 rounded-2xl shadow-xl max-w-xs hidden sm:block border border-slate-800">
+                        <div class="text-3xl font-extrabold text-turquoise mb-1">100%</div>
+                        <p class="text-xs text-slate-300">Открытость к диалогу и готовность поддержать любую созидательную идею.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Areas of Work Section -->
+    <section id="directions" class="py-20 bg-lightBg border-t border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <div class="inline-block text-turquoise font-bold uppercase tracking-wider text-sm bg-turquoise/10 px-3 py-1 rounded-lg">
+                    Ключевые направления
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+                    Чем мы занимаемся?
+                </h2>
+                <p class="text-slate-600">
+                    Выберите интересное для себя направление и станьте частью нашей дружной команды.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1: Volunteering -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 card-hover transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-orange-50 text-accentOrange flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-accentOrange group-hover:text-white transition-colors">
+                            🤝
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Волонтерство</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Участие в республиканских и городских акциях, экологических субботниках, социальных инициативах и форумах.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <button onclick="openModal()" class="text-turquoise font-semibold text-sm inline-flex items-center space-x-1 group-hover:translate-x-1 transition-transform">
+                            <span>Присоединиться</span>
+                            <span>→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Career Guidance & Grants -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 card-hover transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-blue-50 text-brandBlue flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-brandBlue group-hover:text-white transition-colors">
+                            💼
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Профориентация и гранты</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Консультации по молодежным бизнес-грантам, помощь в составлении резюме и поиск актуальных вакансий.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <a href="#contacts" class="text-turquoise font-semibold text-sm inline-flex items-center space-x-1 group-hover:translate-x-1 transition-transform">
+                            <span>Узнать больше</span>
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Psychological & Legal Help -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 card-hover transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-cyan-50 text-turquoise flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-turquoise group-hover:text-white transition-colors">
+                            ⚖️
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Психологическая / Юридическая помощь</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Бесплатные анонимные консультации профессиональных психологов и юристов для молодых граждан.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <a href="#contacts" class="text-turquoise font-semibold text-sm inline-flex items-center space-x-1 group-hover:translate-x-1 transition-transform">
+                            <span>Записаться</span>
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Cultural Events -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 card-hover transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                            🎭
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Культурно-массовые мероприятия</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Организация фестивалей, творческих конкурсов, дебатных турниров, квизов и открытых микрофонов.
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-slate-100">
+                        <a href="#events" class="text-turquoise font-semibold text-sm inline-flex items-center space-x-1 group-hover:translate-x-1 transition-transform">
+                            <span>Смотреть афишу</span>
+                            <span>→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Announcements Section -->
+    <section id="events" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+                <div>
+                    <div class="inline-block text-turquoise font-bold uppercase tracking-wider text-sm bg-turquoise/10 px-3 py-1 rounded-lg mb-3">
+                        Анонсы и события
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+                        Ближайшие мероприятия
+                    </h2>
+                </div>
+                <p class="text-slate-600 max-w-md">
+                    Не пропустите самые яркие события месяца. Участие во всех мероприятиях бесплатное!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Event 1 -->
+                <div class="bg-lightBg rounded-3xl overflow-hidden border border-slate-200/60 card-hover transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-video bg-slate-200">
+                            <img src="https://placehold.co/600x400/06b6d4/ffffff?text=Форум+Молодежи" alt="Форум" class="w-full h-full object-cover">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-brandBlue shadow-sm">
+                                15 Октября 2026
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="text-xs font-semibold text-accentOrange uppercase tracking-wide">Форум / Коворкинг</div>
+                            <h3 class="text-xl font-bold text-slate-900">Молодежный инновационный форум «Jas Summit»</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Панельные дискуссии с успешными предпринимателями, презентация стартап-идей и нетворкинг.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="registerEvent('Молодежный инновационный форум «Jas Summit»')" class="w-full bg-deepBlue hover:bg-slate-800 text-white font-semibold py-3 rounded-xl text-sm transition-colors shadow-md">
+                            Зарегистрироваться
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="bg-lightBg rounded-3xl overflow-hidden border border-slate-200/60 card-hover transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-video bg-slate-200">
+                            <img src="https://placehold.co/600x400/f97316/ffffff?text=Эко-Акция" alt="Акция" class="w-full h-full object-cover">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-brandBlue shadow-sm">
+                                22 Октября 2026
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="text-xs font-semibold text-turquoise uppercase tracking-wide">Эко-акция</div>
+                            <h3 class="text-xl font-bold text-slate-900">Общегородской субботник и эко-квиз «Green City»</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Сделаем город чище вместе! Уборка парковой зоны, горячий чай из самовара и ценные призы за эко-викторину.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="registerEvent('Эко-квиз «Green City»')" class="w-full bg-deepBlue hover:bg-slate-800 text-white font-semibold py-3 rounded-xl text-sm transition-colors shadow-md">
+                            Зарегистрироваться
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="bg-lightBg rounded-3xl overflow-hidden border border-slate-200/60 card-hover transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-video bg-slate-200">
+                            <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Тренинг" alt="Тренинг" class="w-full h-full object-cover">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-brandBlue shadow-sm">
+                                29 Октября 2026
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="text-xs font-semibold text-purple-600 uppercase tracking-wide">Тренинг / Мастер-класс</div>
+                            <h3 class="text-xl font-bold text-slate-900">Мастер-класс по ораторскому искусству и дебатам</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Учимся побеждать страх публичных выступлений, аргументировать свою позицию и уверенно вести переговоры.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="registerEvent('Мастер-класс по ораторскому искусству')" class="w-full bg-deepBlue hover:bg-slate-800 text-white font-semibold py-3 rounded-xl text-sm transition-colors shadow-md">
+                            Зарегистрироваться
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts & Feedback Section -->
+    <section id="contacts" class="py-20 bg-lightBorder border-t border-slate-200/60 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Left: Contact Details -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <div class="inline-block text-turquoise font-bold uppercase tracking-wider text-sm bg-turquoise/10 px-3 py-1 rounded-lg mb-3">
+                            Связь с нами
+                        </div>
+                        <h2 class="text-3xl font-extrabold text-slate-900">
+                            Контакты и адрес
+                        </h2>
+                        <p class="text-slate-600 mt-2 text-sm">
+                            Мы всегда рады ответить на любые вопросы и поддержать ваши идеи. Приходите в гости или пишите в соцсетях!
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-slate-200/60">
+                            <div class="w-10 h-10 rounded-xl bg-turquoise/10 text-turquoise flex items-center justify-center font-bold flex-shrink-0">📍</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Адрес</h4>
+                                <p class="text-slate-600 text-sm mt-1">ул. Конституции Казахстана, 15, офис 204<br>г. Петропавловск (или ваш город)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-slate-200/60">
+                            <div class="w-10 h-10 rounded-xl bg-accentOrange/10 text-accentOrange flex items-center justify-center font-bold flex-shrink-0">📞</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Телефон</h4>
+                                <p class="text-slate-600 text-sm mt-1">+7 (7152) 00-00-00<br>+7 (700) 000-00-00</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 bg-white p-5 rounded-2xl shadow-sm border border-slate-200/60">
+                            <div class="w-10 h-10 rounded-xl bg-brandBlue/10 text-brandBlue flex items-center justify-center font-bold flex-shrink-0">✉️</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Электронная почта</h4>
+                                <p class="text-slate-600 text-sm mt-1">mrc_youth@mail.kz</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Networks -->
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-4 text-sm uppercase tracking-wide">Мы в социальных сетях</h4>
+                        <div class="flex items-center space-x-4">
+                            <a href="https://instagram.com" target="_blank" class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white flex items-center justify-center shadow-md hover:scale-110 transition-transform font-bold text-xl">
+                                📷
+                            </a>
+                            <a href="https://telegram.org" target="_blank" class="w-12 h-12 rounded-2xl bg-sky-500 text-white flex items-center justify-center shadow-md hover:scale-110 transition-transform font-bold text-xl">
+                                ✈️
+                            </a>
+                            <a href="https://whatsapp.com" target="_blank" class="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md hover:scale-110 transition-transform font-bold text-xl">
+                                💬
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Feedback Form -->
+                <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-slate-200/60">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Остались вопросы? Напишите нам!</h3>
+                    <p class="text-slate-600 text-sm mb-6">Заполните форму ниже, и наши специалисты свяжутся с вами в ближайшее время.</p>
+                    
+                    <form onsubmit="handleFeedback(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Ваше имя</label>
+                                <input type="text" required class="w-full bg-lightBg border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-turquoise transition-colors" placeholder="Алишер">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Номер телефона</label>
+                                <input type="tel" required class="w-full bg-lightBg border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-turquoise transition-colors" placeholder="+7 (700) 123-45-67">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Тема обращения</label>
+                            <select class="w-full bg-lightBg border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-turquoise transition-colors">
+                                <option>Волонтерство и акции</option>
+                                <option>Гранты и стартапы</option>
+                                <option>Психологическая / Юридическая помощь</option>
+                                <option>Другой вопрос</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Сообщение</label>
+                            <textarea rows="4" required class="w-full bg-lightBg border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-turquoise transition-colors" placeholder="Напишите ваш вопрос или предложение..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-accentOrange hover:bg-orange-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-accentOrange/30 transition-all text-sm">
+                            Отправить сообщение
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-deepBlue text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div>
+                <div class="text-white font-bold text-lg mb-1">Молодежный ресурсный центр</div>
+                <p class="text-xs text-slate-500">© 2026 Жастар ресурстық орталығы. Все права защищены.</p>
+            </div>
+            <div class="flex items-center space-x-6 text-sm">
+                <a href="#about" class="hover:text-turquoise transition-colors">О нас</a>
+                <a href="#directions" class="hover:text-turquoise transition-colors">Направления</a>
+                <a href="#events" class="hover:text-turquoise transition-colors">Мероприятия</a>
+                <a href="#contacts" class="hover:text-turquoise transition-colors">Контакты</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Volunteer / Registration Modal -->
+    <div id="volunteer-modal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative transform transition-all scale-95 opacity-0" id="modal-content">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600 text-xl font-bold w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center transition-colors">✕</button>
+            
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-accentOrange/10 text-accentOrange flex items-center justify-center text-2xl font-bold mx-auto mb-3">🔥</div>
+                <h3 class="text-2xl font-bold text-slate-900" id="modal-title">Стать волонтером</h3>
+                <p class="text-slate-600 text-xs mt-1" id="modal-subtitle">Заполните анкету, и мы добавим вас в наш чат волонтеров.</p>
+            </div>
+
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Ваше ФИО</label>
+                    <input type="text" required class="w-full bg-lightBg border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-turquoise" placeholder="Иванов Иван">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Телефон / WhatsApp</label>
+                    <input type="tel" required class="w-full bg-lightBg border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-turquoise" placeholder="+7 (700) 000-00-00">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Возраст / Учебное заведение</label>
+                    <input type="text" required class="w-full bg-lightBg border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm focus:outline-none focus:border-turquoise" placeholder="19 лет, Университет">
+                </div>
+                <button type="submit" class="w-full bg-accentOrange hover:bg-orange-600 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-accentOrange/30 text-sm transition-all mt-2">
+                    Отправить заявку
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl transform translate-y-32 opacity-0 transition-all duration-300 flex items-center space-x-3 border border-slate-800">
+        <span class="text-turquoise text-xl font-bold">✓</span>
+        <span id="toast-text" class="text-sm font-medium">Заявка успешно отправлена! Мы свяжемся с вами.</span>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Modal functions
+        const modal = document.getElementById('volunteer-modal');
+        const modalContent = document.getElementById('modal-content');
+        const modalTitle = document.getElementById('modal-title');
+        const modalSubtitle = document.getElementById('modal-subtitle');
+
+        function openModal(title = "Стать волонтером", subtitle = "Заполните анкету, и мы добавим вас в наш чат волонтеров.") {
+            modalTitle.textContent = title;
+            modalSubtitle.textContent = subtitle;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        // Close modal on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Event registration helper
+        function registerEvent(eventName) {
+            openModal("Регистрация на событие", `Вы записываетесь на: ${eventName}. Заполните ваши данные.`);
+        }
+
+        // Toast notification helper
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            toastText.textContent = message;
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 4000);
+        }
+
+        // Form handlers (preventing default reload and showing toast)
+        function handleFeedback(e) {
+            e.preventDefault();
+            e.target.reset();
+            showToast("Спасибо! Ваше сообщение успешно отправлено.");
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            e.target.reset();
+            closeModal();
+            showToast("Заявка принята! Скоро мы с вами свяжемся.");
+        }
+    </script>
+</body>
+</html>
